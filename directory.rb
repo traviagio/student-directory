@@ -1,24 +1,29 @@
-# first, we print the list of stuents
+# let's put all students into an array
+students = [
+"Georgi Georgiev",
+"JB",
+"Ken",
+"Aneth",
+"Erica",
+"Chris",
+"Kumy",
+"Lara",
+"James",
+"NightPain",
+"James",
+"NightPain",
+"James",
+"Jeremy",
+"Giacomo",
+"Nisar",
+"Michael",
+"Peter",
+]
+# and then print them
 puts "The students of my cohort at Makers Academy"
 puts "_________________"
-puts "Georgi Georgiev"
-puts "JB"
-puts "Ken"
-puts "Aneth"
-puts "Erica"
-puts "Chris"
-puts "Kumy"
-puts "Lara"
-puts "James"
-puts "NightPain"
-puts "James"
-puts "Jeremy"
-puts "Giacomo"
-puts "Nisar"
-puts "Michael"
-puts "Peter"
+students.each do |student|
+	puts student
+end
 #finally, we print the total
-print "Overall, we have "
-#it's important that print() doesn't add new line characters
-print 9
-puts " great students"
+print "Overall, we have #{students.length} great students"
