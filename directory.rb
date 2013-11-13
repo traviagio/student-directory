@@ -5,8 +5,8 @@ end
 
 def print(students)
     # puts students.inspect
-    students.select{ |x| x[:name][0] == "A" }.each do |x|
-        puts x[:name]
+    students.select{ |student| student[:name][0] == "A" }.each do |student|
+        puts student[:name]
     end
 end
 
