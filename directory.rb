@@ -5,7 +5,7 @@ end
 
 def print(students)
     # puts students.inspect
-    students.select{ |student| student[:name][0] == "A" }.each do |student|
+    students.select{ |student| student[:name].length < 11 }.each do |student|
         puts student[:name]
     end
 end
