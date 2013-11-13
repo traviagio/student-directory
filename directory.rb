@@ -28,6 +28,8 @@ def input_students
     	# get another name from the user
     	name = gets.chomp
     end
+    
+
     #return the array of students
     students
  end
