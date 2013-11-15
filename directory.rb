@@ -23,15 +23,42 @@ def input_students
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp
   # while the name is not empty, repeat this code
-  while !name.empty? do    
-    # add the student hash to the array
-    students << {:name => name, :cohort => :november, :country => :UK}  
-    puts_center "Now we have #{students.length} students"
+  
+  loop do 
+    puts "Please enter your name:"
+       name = gets.chomp
+       break if name.empty?
+     puts "Please enter your cohort:"
+       cohort = gets.chomp 
+       break if cohort.empty?  
+     puts "Please enter your country:"
+       country = gets.chomp
+       break if country.empty?
+       student = {:name => name, :cohort => cohort, :country => country}
+       students << student
+       puts "Entered: " + student.to_s
+
+  end  
+
+# #  loop cohort do
+# #    cohort = gets.chomp
+#     students << { :cohort => cohort}
+#     break if cohort.empty?
+#      puts "You did not enter anything"
+#   end
+
+#  loop country do
+#     country = gets.chomp
+#     students << { :country => country}
+#     break if country.empty?
+#      puts "You did not enter anything"
+#   end
+
+
+    #puts_center "Now we have #{students.length} students"
     # get another name from the user
-    name = gets.chomp
-  end
+ 
   # return the array of students
   students
 end
