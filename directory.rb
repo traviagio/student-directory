@@ -37,29 +37,12 @@ def input_students
        break if country.empty?
        student = {:name => name, :cohort => cohort, :country => country}
        students << student
-       puts "Entered: " + student.to_s
-
+       puts_center "Now we have #{students.length} students from " + country.to_s
+       puts_center "Please continue if you wish to add more students." 
+       puts_center "To exit, please hit return twice!" 
   end  
+  
 
-# #  loop cohort do
-# #    cohort = gets.chomp
-#     students << { :cohort => cohort}
-#     break if cohort.empty?
-#      puts "You did not enter anything"
-#   end
-
-#  loop country do
-#     country = gets.chomp
-#     students << { :country => country}
-#     break if country.empty?
-#      puts "You did not enter anything"
-#   end
-
-
-    #puts_center "Now we have #{students.length} students"
-    # get another name from the user
- 
-  # return the array of students
   students
 end
 
