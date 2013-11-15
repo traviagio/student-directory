@@ -9,11 +9,15 @@ def print(students)
   end
 end
 
-#def print_grouped_students(students)
- #   puts_center cohort  
-  #students.map { |student| student[:cohort] }
-   # puts_center "#{student[:name]} from (#{student[:country]})"  
-#end
+def print_grouped_students(students) 
+    # puts_center "#{student[:name]} (#{student[:cohort]} cohort) from (#{student[:country]})"   
+    students.map { |student| student[:cohort] }.uniq.each do |cohort|
+       puts_center cohort
+       students_in_cohort = students.select { |student| student[:cohort] == cohort }
+        print students_in_cohort
+    end
+     #puts_center "#{student[:name]} from (#{student[:cohort]})" 
+end
 
 
 def print_footer(names)    
@@ -28,7 +32,7 @@ def print_country(students,country)
   if students.length == 1
     puts_center "Now we have #{students.length} student from " + country.to_s
   else
-    puts_center "Now we have #{students.length} students from " + country.to_s
+    puts_center "Now we have #{students.length} students. Latest one is coming from " + country.to_s
   end
 end
 
@@ -72,7 +76,6 @@ def input_students
       puts_center "Please continue if you wish to add more students." 
       puts_center "To exit, please hit return twice!" 
   end  
- 
   students
 end
 
@@ -82,5 +85,5 @@ end
 students = input_students
 print_header
 #print(students)
-#print_grouped_students(students)
+print_grouped_students(students)
 print_footer(students)
