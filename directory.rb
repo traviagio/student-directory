@@ -37,7 +37,11 @@ def input_students
        break if country.empty?
        student = {:name => name, :cohort => cohort, :country => country}
        students << student
+       if students.length == 1
+       puts_center "Now we have #{students.length} student from " + country.to_s
+       else
        puts_center "Now we have #{students.length} students from " + country.to_s
+       end
        puts_center "Please continue if you wish to add more students." 
        puts_center "To exit, please hit return twice!" 
   end  
