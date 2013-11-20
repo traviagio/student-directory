@@ -20,6 +20,29 @@ def print_input_students
   puts "When finished, hit return twice"
 end
 
+def load_students(filename = "students.csv")
+  file = File.open(filename, "r")
+  file.readlines.each do |line|
+    name, cohort = line.chomp.split(',')
+  @students << {:name => name, :cohort => cohort}
+   end
+   file.close
+end   
+
+def try_load_students 
+    filename = ARGV.first #first argument from the command line
+    return if filename.nil? #get out fo the method if it isn't given
+    if File.exists?(filename) #if it exsists
+      load_students(filename)
+       puts "Loaded #{@students.length} from #{filename}"
+     else #
+       puts "Sorry #{filename} doesn't exsist."
+       exit  
+    end
+end    
+
+
+
 def save_students
   #open the file for writing
   file = File.open("students.csv", "w")
@@ -33,20 +56,18 @@ def save_students
    puts "Your information has been saved!"
  end   
 
-
-
 def input_students
   print_input_students
   students=[]
   puts "Please enter your name please:"
-  name = gets.chomp.split(' ').map {|word| word.capitalize }.join(' ')
+  name = STDIN.gets.chomp.split(' ').map {|word| word.capitalize }.join(' ')
   puts "Now enter the cohort please:"
-  cohort = gets.chomp.split(' ').map {|word| word.capitalize }.join(' ')
+  cohort = STDIN.gets.chomp.split(' ').map {|word| word.capitalize }.join(' ')
 while !name.empty? do
   students << {:name => name, :cohort => cohort}
   puts "now we have #{students.length} students"
-  name = gets.chomp.split(' ').map {|word| word.capitalize }.join(' ')
-  cohort = gets.chomp.split(' ').map {|word| word.capitalize }.join(' ')
+  name = STDIN.gets.chomp.split(' ').map {|word| word.capitalize }.join(' ')
+  cohort = STDIN.gets.chomp.split(' ').map {|word| word.capitalize }.join(' ')
 end
   @students = students
 end
@@ -61,18 +82,21 @@ def print_menu # 3. do what the user has asked
   puts "1. Input the students"
   puts "2. Show the students"
   puts "3. Save students list"
+  puts "4. Load student list"
   puts "9. Exit" # 9 because we'll be adding more items
 end
 
 def selection_process # 2. read the input and save it into a variable
-  selection = gets.chomp
+  selection = STDIN.gets.chomp
   case selection
   when "1"
   input_students
   when "2"
        show_students  
   when "3"
-        save_students      
+        save_students
+  when "4"
+        load_students            
   when "9"
      exit #this will cause the program to terminate
   else
@@ -90,6 +114,6 @@ def interactive_menu
   end
 end
 #nothing happens until we call methods
-
+try_load_students
 interactive_menu
 
