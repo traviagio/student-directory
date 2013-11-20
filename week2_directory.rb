@@ -16,14 +16,31 @@ def print_footer(names)
 end
 
 def print_input_students
-  puts "please enter the names of the students and there cohort"
-  puts "hit return. To finish hit return twice"
+  puts "Please enter the names of the students and the cohort"
+  puts "When finished, hit return twice"
 end
+
+def save_students
+  #open the file for writing
+  file = File.open("students.csv", "w")
+  #iretate over the students
+  @students.each do |student| 
+    student_data = [student[:name], student[:cohort]]
+    csv_line = student_data.join(",")
+    file.puts csv_line
+   end
+   file.close
+   puts "Your information has been saved!"
+ end   
+
+
 
 def input_students
   print_input_students
   students=[]
+  puts "Please enter your name please:"
   name = gets.chomp.split(' ').map {|word| word.capitalize }.join(' ')
+  puts "Now enter the cohort please:"
   cohort = gets.chomp.split(' ').map {|word| word.capitalize }.join(' ')
 while !name.empty? do
   students << {:name => name, :cohort => cohort}
@@ -43,6 +60,7 @@ end
 def print_menu # 3. do what the user has asked
   puts "1. Input the students"
   puts "2. Show the students"
+  puts "3. Save students list"
   puts "9. Exit" # 9 because we'll be adding more items
 end
 
@@ -53,6 +71,8 @@ def selection_process # 2. read the input and save it into a variable
   input_students
   when "2"
        show_students  
+  when "3"
+        save_students      
   when "9"
      exit #this will cause the program to terminate
   else
@@ -72,3 +92,4 @@ end
 #nothing happens until we call methods
 
 interactive_menu
+
