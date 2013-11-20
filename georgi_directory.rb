@@ -76,6 +76,11 @@ def input_students
   students
 end
 
+def print_menu
+  print_header
+  print (students)
+  print_footer (students)
+end  
 
 
 def interactive_menu
@@ -92,9 +97,7 @@ def interactive_menu
   when "1"
    students = input_students
   when "2"
-    print_header
-    print (students)
-    print_footer (students)
+    print_menu
   when "9"
      exit #this will cause the program to terminate
   else
